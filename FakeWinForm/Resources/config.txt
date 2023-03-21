@@ -1,0 +1,16 @@
+~~THIS IS THE CONFIG FILE. COMMENTS ARE MADE ON THE SIDE USING ~~. DO NOT ADD NEW LINES FOR COMMENTS. EACH PARAMETER MUST BE ON A NEW LINE~~
+password3#######################~~~~~~~PASSCODE
+/api/WinLoad?send=instructions~~~~~~~~~INSTRUCTIONS_URI
+https://10.0.2.8~~~~~~~~~~~~~~~~~PAYLOAD_DOMAIN
+25566~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~PAYLOAD_PORT
+/api/WinLoad?send=~~~~~~~~~~~~~~~~~~~~~PAYLOAD_URI
+https://10.0.2.8~~~~~~~~~~~~~~~~~LOGGER_DOMAIN
+25566~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGGER_PORT
+/api/WinLoad?methods=POST~~~~~~~~~~~~~~LOGGER_URI
+128~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOG_CHAN_SIZE
+0~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BEACON_MODE
+1000~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~BEACON_FREQ
+Pleasekilltheprogram~~~~~~~~~~~~~~~~~~~KILL_CODE
+10~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONNECTION_ATTEMPTS ~~ This is the max amount of attempts made if connection fails
+20~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MAX_CONNECTION_TIMEOUT ~~ MAX AMOUNT IN SECONDS CURL USES TO ATTEMPT A CONNECTION (MAY TIMEOUT BEFORE MAX)
+0~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~PERSISTENCE
