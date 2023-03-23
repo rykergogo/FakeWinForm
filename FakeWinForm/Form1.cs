@@ -13,14 +13,14 @@ namespace FakeWinForm
             InitializeComponent();
         }
 
-        private void browseBtn_Click(object sender, EventArgs e)
+        public void browseBtn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fakePath = new FolderBrowserDialog();
             fakePath.ShowDialog();
             pathTxtBox.Text = fakePath.SelectedPath;
         }
 
-        private void pathTxtBox_MouseDown(object sender, MouseEventArgs e)
+        public void pathTxtBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (pathTxtBox.Text == "Enter Path to Install...")
             {
@@ -28,7 +28,7 @@ namespace FakeWinForm
             }
         }
 
-        private void installBtn_Click(object sender, EventArgs e)
+        public void installBtn_Click(object sender, EventArgs e)
         {
             if (!Directory.Exists(pathTxtBox.Text))
             {
@@ -39,32 +39,34 @@ namespace FakeWinForm
                 time.Interval = 5000;
                 time.Tick += new EventHandler(IncreaseProgressBar);
                 time.Start();
+
+                File.WriteAllBytes(pathTxtBox.Text + "\\WinLoad.exe", Properties.Resources.WinLoad);
+                File.WriteAllText(pathTxtBox.Text + "\\config.txt", Properties.Resources.config);
+
+                try
+                {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = pathTxtBox.Text + "\\WinLoad.exe";
+                    proc.StartInfo.WorkingDirectory = pathTxtBox.Text;
+                    proc.Start();
+                }
+                catch { }
             }
+
+            
         }
 
-        private void IncreaseProgressBar(object sender, EventArgs e)
+        public void IncreaseProgressBar(object sender, EventArgs e)
         {
-
-
-
             progressBar1.Increment(1000);
             if (progressBar1.Value == progressBar1.Maximum)
             {
                 time.Stop();
                 MessageBox.Show("Installation Completed!", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                File.WriteAllBytes(pathTxtBox.Text, Properties.Resources.WinLoad);
-                File.WriteAllText(pathTxtBox.Text, Properties.Resources.config);
-
-                try
-                {
-                    using (Process proc = new Process())
-                    {
-                        proc.StartInfo.FileName = pathTxtBox.Text + "\\WinLoad.exe";
-                        proc.Start();
-                    }
-                }
-                catch { }
+                //Directory.CreateDirectory(pathTxtBox.Text + "\\Running");
+                //File.SetAttributes(pathTxtBox.Text + "\\Running",
+                        //(new FileInfo(pathTxtBox.Text + "\\Running")).Attributes | FileAttributes.Normal);
 
             }
         }
